@@ -1,0 +1,11 @@
+{
+  "name": "regalo",
+  "version": "1.0.0",
+  "description": "Sitio web romántico",
+  "scripts": {
+    "start": "serve -s ."
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+} 
