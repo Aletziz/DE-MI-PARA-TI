@@ -243,8 +243,59 @@
             offset: 100
         });
 
-        // Filter functionality
+        // Generate gallery items
+        function generateGalleryItems() {
+            const galleryContainer = document.querySelector('.photo-grid');
+            if (!galleryContainer) return;
+            
+            // Get all images from 808 to 951
+            for (let i = 808; i <= 951; i++) {
+                const imageNumber = i.toString().padStart(4, '0');
+                const fileName = `IMG-20250506-WA${imageNumber}.jpg`;
+                
+                // Create gallery item
+                const item = document.createElement('div');
+                item.className = 'photo-item';
+                item.setAttribute('data-category', 'momentos');
+                item.setAttribute('data-aos', 'zoom-in');
+                item.setAttribute('data-aos-delay', ((i - 808) * 100).toString());
+                
+                // Create image element
+                const img = document.createElement('img');
+                img.src = `./imgs/${fileName}`;
+                img.alt = 'Momentos especiales';
+                img.onerror = function() {
+                    console.log(`Error loading image: ${fileName}`);
+                    this.style.display = 'none';
+                    item.style.display = 'none';
+                };
+                img.onload = function() {
+                    console.log(`Successfully loaded image: ${fileName}`);
+                };
+                
+                // Create overlay
+                const overlay = document.createElement('div');
+                overlay.className = 'photo-overlay';
+                
+                // Create description
+                const description = document.createElement('p');
+                description.textContent = (i % 2 === 0) ? 'Momentos únicos' : 'Recuerdos para siempre';
+                
+                // Assemble elements
+                overlay.appendChild(description);
+                item.appendChild(img);
+                item.appendChild(overlay);
+                
+                // Add to gallery
+                galleryContainer.appendChild(item);
+            }
+        }
+
+        // Initialize gallery when document is loaded
         document.addEventListener('DOMContentLoaded', () => {
+            generateGalleryItems();
+
+            // Filter functionality
             const filterButtons = document.querySelectorAll('.filter-button');
             
             filterButtons.forEach(button => {
@@ -335,6 +386,5 @@
             });
         });
     </script>
-    <script src="generate_gallery.js"></script>
 </body>
 </html> 
