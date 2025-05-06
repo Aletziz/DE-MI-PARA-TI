@@ -1,0 +1,12 @@
+{
+  "root": ".",
+  "routes": {
+    "/galeria": "/galeria.html",
+    "/**": "/index.html"
+  },
+  "headers": {
+    "/**": {
+      "Cache-Control": "no-cache, no-store, must-revalidate"
+    }
+  }
+} 

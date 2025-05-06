@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: de-mi-para-ti
+    env: static
+    buildCommand: npm install
+    staticPublishPath: ./
+    routes:
+      - type: rewrite
+        source: /galeria
+        destination: /galeria.html
+      - type: rewrite
+        source: /*
+        destination: /index.html 
